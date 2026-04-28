@@ -120,11 +120,26 @@ env_setup() {
     if [ ! -f "$BACKEND_DIR/.env" ] || [ "$overwrite_file" = "true" ]; then
         cat <<EOF > "$BACKEND_DIR/.env"
 # Replace with the actual path to your images folder
-EXTERNAL_IMAGE_PATH=./media
+EXTERNAL_IMAGE_PATH=~/products_pic
 # Leave empty for now to use Mock data
 DATABASE_URL=
 EOF
         ok ".env file created/overwritten in $BACKEND_DIR."
+    fi
+}
+
+verify_image_path() {
+    if [ -f "$BACKEND_DIR/.env" ]; then
+        local img_path=$(grep "^EXTERNAL_IMAGE_PATH=" "$BACKEND_DIR/.env" | cut -d'=' -f2)
+        if [ -n "$img_path" ]; then
+            # Expand tilde or variables
+            local expanded_path=$(eval echo "$img_path")
+            if [ ! -d "$expanded_path" ]; then
+                warn "The image directory '$img_path' does not exist. Please create it or update EXTERNAL_IMAGE_PATH in backend/.env"
+            else
+                ok "Image directory '$img_path' verified."
+            fi
+        fi
     fi
 }
 
@@ -186,6 +201,7 @@ main() {
   virtual_env_setup "$clear_venv"
   ssl_cert_setup
   env_setup "$overwrite_file"
+  verify_image_path
   download_frontend_assets
   post_instructions
 }

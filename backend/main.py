@@ -11,7 +11,7 @@ app = FastAPI()
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
 # Mount the Local Image Folder
-IMG_PATH = os.getenv("EXTERNAL_IMAGE_PATH", "./")
+IMG_PATH = os.path.expanduser(os.getenv("EXTERNAL_IMAGE_PATH", "./"))
 app.mount("/media", StaticFiles(directory=IMG_PATH), name="media")
 
 BASE_MEDIA_URL = "http://localhost:8000/media"
@@ -24,3 +24,6 @@ def get_cats(): return repo.get_categories()
 
 @app.get("/api/products")
 def get_prods(category_id: int = Query(None)): return repo.get_products(category_id)
+
+# Mount the frontend application
+app.mount("/", StaticFiles(directory="../frontend", html=True), name="frontend")
