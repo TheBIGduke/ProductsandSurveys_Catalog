@@ -10,6 +10,15 @@ app = FastAPI()
 
 app.add_middleware(CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"])
 
+from fastapi import Request
+@app.middleware("http")
+async def add_cache_control_header(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Expires"] = "0"
+    return response
+
 # Mount the Local Image Folder
 IMG_PATH = os.path.expanduser(os.getenv("EXTERNAL_IMAGE_PATH", "./"))
 app.mount("/media", StaticFiles(directory=IMG_PATH), name="media")

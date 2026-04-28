@@ -30,7 +30,7 @@ function renderProducts(prods) {
     grid.innerHTML = prods.map(p => `
         <div class="col">
             <div class="card h-100 shadow-sm">
-                <img src="${p.primary_image || ''}" class="card-img-top product-img" onerror="this.src='https://via.placeholder.com/300?text=No+Asset'">
+                <img src="${p.primary_image ? p.primary_image + '?v=' + new Date().getTime() : ''}" class="card-img-top product-img" onerror="this.src='https://via.placeholder.com/300?text=No+Asset'">
                 <div class="card-body">
                     <h5 class="card-title fw-bold">${p.name}</h5>
                     <p class="card-text text-muted small">${p.description}</p>
