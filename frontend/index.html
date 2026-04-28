@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Octopy Inventory</title>
+    <link rel="stylesheet" href="assets/bootstrap.min.css">
+    <style>
+        .product-img {
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .card {
+            border: none;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        .filter-btn.active {
+            background-color: #0d6efd;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">OCTOPY <span class="text-primary">CATALOG</span></a>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <div id="filter-bar" class="btn-group bg-white p-1 shadow-sm rounded">
+            </div>
+        </div>
+
+        <div id="catalog-grid" class="row row-cols-1 row-cols-md-3 g-4">
+        </div>
+    </div>
+
+    <script src="assets/bootstrap.bundle.min.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>

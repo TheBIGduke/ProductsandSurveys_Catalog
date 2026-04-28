@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List, Optional
 
-class ProductionMediaSchema(BaseModel):
+class ProductMediaSchema(BaseModel):
     media_url: str
     is_primary: bool
     position: int
@@ -16,5 +16,5 @@ class ProductSchema(BaseModel):
     price: float
     description: Optional[str]
     categories: List[str]
-    media: List[ProductionMediaSchema]
+    media: List[ProductMediaSchema]
     primary_image: Optional[str]
