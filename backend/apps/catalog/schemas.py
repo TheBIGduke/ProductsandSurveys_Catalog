@@ -1,3 +1,4 @@
+# Made by Kaléin Tamaríz
 from pydantic import BaseModel, ConfigDict
 from typing import List, Optional
 

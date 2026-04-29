@@ -1,3 +1,4 @@
+// Made by Kaléin Tamaríz
 const API = "http://localhost:9999/api";
 
 async function init() {

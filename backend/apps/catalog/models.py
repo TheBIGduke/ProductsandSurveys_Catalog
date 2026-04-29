@@ -1,3 +1,4 @@
+# Made by Kaléin Tamaríz
 from sqlalchemy import Column, Integer, String, Float, Text, DateTime, Boolean, ForeignKey, Table
 from sqlalchemy.orm import relationship
 from datetime import datetime
