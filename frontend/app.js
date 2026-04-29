@@ -1,4 +1,4 @@
-const API = "http://localhost:8000/api";
+const API = "http://localhost:9999/api";
 
 async function init() {
     const [cats, prods] = await Promise.all([

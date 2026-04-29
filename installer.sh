@@ -120,9 +120,11 @@ env_setup() {
     if [ ! -f "$BACKEND_DIR/.env" ] || [ "$overwrite_file" = "true" ]; then
         cat <<EOF > "$BACKEND_DIR/.env"
 # Replace with the actual path to your images folder
-EXTERNAL_IMAGE_PATH=~/products_pic
-# Leave empty for now to use Mock data
-DATABASE_URL=
+EXTERNAL_IMAGE_PATH=../frontend/media
+# Base URL for media assets
+BASE_MEDIA_URL=http://localhost:9999/media
+# Set to sqlite:///../pepsico.db or leave empty for mock data
+DATABASE_URL=sqlite:///../pepsico.db
 EOF
         ok ".env file created/overwritten in $BACKEND_DIR."
     fi
@@ -166,14 +168,14 @@ download_frontend_assets() {
 post_instructions() {
     info "Installation complete!"
     echo ""
-    echo "To run the backend:"
+    echo "To run the application:"
     echo "  cd backend"
     echo "  source .venv/bin/activate"
-    echo "  uvicorn main:app --reload"
+    echo "  python3 main.py"
     echo ""
-    echo "To view the frontend, you can simply open frontend/index.html in a browser or serve it using a local server."
+    echo "Access the application at: http://localhost:9999"
     echo ""
-    info "Please, add the corresponding paths and variables in backend/.env if needed."
+    info "Please verify the paths and variables in backend/.env if needed."
 }
 
 main() {

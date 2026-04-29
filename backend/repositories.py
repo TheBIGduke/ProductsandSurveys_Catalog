@@ -147,8 +147,3 @@ class MockRepository:
                 **p, "categories": cat_names, "media": p_media, "primary_image": primary, "description": p.get("desc")
             })
         return results
-
-class SQLRepository:
-    def __init__(self, db_path: str, base_url: str):
-        self.db_path = db_path
-        self.base_url = base_url
